@@ -1,0 +1,154 @@
+.heroContainer {
+    display: flex;
+    flex-direction: row; /* Default: side-by-side layout */
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--padding-12xl);
+    gap: var(--padding-21xl);
+}
+
+.bannerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    margin-top: 3rem;
+}
+
+/* Left Side - Description */
+.descriptionLeft {
+    flex-grow: 1; /* Equal space distribution */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.introText {
+    color: black;
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.thin {
+    font-weight: 300;
+}
+
+.professionSummary {
+    color: #71717a;
+    line-height: 1.75;
+    word-wrap: break-word;
+}
+
+.resumeWithSocialIcon {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    gap: 1rem;
+    margin-top: 48px;
+    width: 100%;
+}
+
+.descriptionTitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+/* Social Media */
+.socialMediaContainer {
+    align-items: start;
+    display: flex;
+    gap: 8px;
+}
+
+/* Right Side - Banner Image */
+.bannerImage {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 580px; /* Ensure the image doesn't grow beyond this width */
+    width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the image scales properly without distortion */
+    object-position: center;
+}
+
+
+/* RESPONSIVENESS */
+
+/* Tablet */
+@media (max-width: 768px) {
+    .heroContainer {
+        flex-direction: column-reverse; /* Text below the banner */
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .descriptionLeft {
+        align-items: center;
+    }
+
+    .introText {
+        font-size: 2.5rem;
+    }
+
+    .bannerImage {
+        width: 100%;
+        height: auto;
+    }
+}
+/* Mobile */
+@media (max-width: 480px) {
+    .bannerImage {
+        max-width: 100%; /* Ensure it stays within its container */
+        height: auto;
+        object-fit: contain;
+    }
+}
+
+
+/* Mobile */
+@media (max-width: 480px) {
+    .heroContainer {
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+    .resumeWithSocialIcon{
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .bannerContainer {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 1rem; /* Add padding to prevent image stretching */
+    }
+
+    .bannerImage {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .descriptionLeft {
+        align-items: center;
+        text-align: center;
+    }
+
+    .introText {
+        font-size: 1.75rem; /* More compact for mobile */
+    }
+
+    .professionSummary {
+        font-size: 0.9rem;
+    }
+
+    .socialMediaContainer {
+        justify-content: center;
+    }
+}

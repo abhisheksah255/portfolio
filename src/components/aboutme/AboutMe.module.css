@@ -1,0 +1,33 @@
+.aboutMeContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8rem;
+    align-items: start;
+}
+
+.aboutMeContent{
+    display: flex;
+    flex-direction: column;
+    /*gap: 1rem;*/
+    align-items: start;
+    justify-content: flex-start;
+    flex-grow: 1;
+}
+
+.aboutMeImg{
+    max-width: 460px;
+    height: auto;
+    flex-grow: 1;
+}
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .aboutMeContainer {
+       flex-direction: column;
+        gap: 2rem;
+        justify-content: center;
+        align-items: center;
+    }
+}

@@ -1,0 +1,10 @@
+.socialContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+    width: 100%;
+    font-size: var(--button-text-semibold-size);
+    margin: 0 auto;
+}

@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap');
+
+body {
+  margin: 0;
+  line-height: normal;
+  align-content: center;
+  background-color: var(--primary-white);
+  font-family: var(--font-family-sora), serif;
+}
+
+:root {
+  /* fonts */
+  --font-family-sora: 'Sora', monospace;
+  --heading-h3-semibold: Sora;
+
+  /* font sizes */
+  --paragraph-p2-regular-size: 1rem;
+  --button-text-semibold-size: 1.25rem;
+  --heading-h3-semibold-size: 1.75rem;
+  --displaytext-extra-bold-size: 3rem;
+  --heading-h2-bold-size: 2rem;
+  --heading-h4-semibold-size: 1.5rem;
+
+  /* Colors */
+  --primary-white: #fff;
+  --primary-black: #000;
+  --primary-neutral: #404040;
+  --zinc-100: #f4f4f5;
+  --zinc-200: #e4e4e7;
+  --zinc-300: #d4d4d7;
+  --zinc-500: #71717a;
+  --zinc-800: #27272a;
+
+  --error:#ef4444;
+
+  /* Gaps */
+  --gap-xs: 0.75rem;
+  --gap-21xl: 2.5rem;
+  --gap-base: 1rem;
+  --gap-xl: 1.25rem;
+  --gap-5xl: 1.5rem;
+  --gap-3xs: 0.625rem;
+  --gap-11xl: 1.875rem;
+  --gap-9xl: 1.75rem;
+  --gap-13xl: 2rem;
+
+  /* Paddings */
+  --padding-5xl: 1.5rem;
+  --padding-61xl: 5rem;
+  --padding-13xl: 2rem;
+  --padding-41xl: 3.75rem;
+  --padding-xl: 1.25rem;
+  --padding-base: 1rem;
+  --padding-21xl: 2.5rem;
+  --padding-11xl: 1.875rem;
+  --padding-12xl: 3rem;
+
+  /* Border radiuses */
+  --br-9xs: 4px;
+  --br-xl: 20px;
+  --br-lg-8: 19px;
+  --br-3xs: 10px;
+
+  --skill-container-size: 9.5rem;
+  --social-container-size: 9.5rem;
+  --horzontal-margin: 5%;
+
+  /*  Screen Sizes*/
+  --tablet-width: 768px;
+  --mobile-width: 480px;
+}
+
+/* Mobile - Small Devices (up to 480px) */
+@media (max-width: 480px) {
+  :root {
+    --paragraph-p2-regular-size: 0.875rem;
+    --button-text-semibold-size: 1rem;
+    --heading-h3-semibold-size: 1.5rem;
+    --displaytext-extra-bold-size: 2.5rem;
+    --heading-h2-bold-size: 1.5rem;
+    --heading-h4-semibold-size: 1.25rem;
+    --intro-text-extra-bold-size: 6rem;
+
+    --gap-xs: 0.5rem;
+    --gap-21xl: 1.5rem;
+    --gap-xl: 1rem;
+    --gap-5xl: 1.25rem;
+
+    --padding-5xl: 1rem;
+    --padding-61xl: 4rem;
+    --padding-13xl: 1.5rem;
+    --padding-41xl: 3rem;
+    --padding-xl: 1rem;
+    --padding-21xl: 2rem;
+
+    --skill-container-size: 4.5rem;
+    --skill-container-image-size: 2rem;
+    --social-container-size: 4.5rem;
+    --horzontal-margin: 5%;
+  }
+}
+
+/* Tablet Devices (up to 768px) */
+@media (max-width: 768px) {
+  :root {
+    --paragraph-p2-regular-size: 1rem;
+    --button-text-semibold-size: 1.125rem;
+    --heading-h3-semibold-size: 1.625rem;
+    --displaytext-extra-bold-size: 2.75rem;
+    --heading-h2-bold-size: 1.75rem;
+    --heading-h4-semibold-size: 1.375rem;
+
+    --gap-xs: 0.625rem;
+    --gap-21xl: 2rem;
+    --gap-xl: 1.125rem;
+    --gap-5xl: 1.375rem;
+
+    --padding-5xl: 1.25rem;
+    --padding-61xl: 4.5rem;
+    --padding-13xl: 1.75rem;
+    --padding-41xl: 3.25rem;
+    --padding-xl: 1.125rem;
+    --padding-21xl: 2.25rem;
+
+    --skill-container-size: 7rem;
+    --skill-container-image-size: 4.5rem;
+    --social-container-size: 7rem;
+    --horzontal-margin: 5%;
+  }
+}
+
+/* Small Foldable Devices (Up to 600px) */
+@media (max-width: 600px) {
+  :root {
+    --paragraph-p2-regular-size: 1rem;
+    --button-text-semibold-size: 1.125rem;
+    --heading-h3-semibold-size: 1.5rem;
+    --displaytext-extra-bold-size: 2.5rem;
+    --heading-h2-bold-size: 1.75rem;
+    --heading-h4-semibold-size: 1.375rem;
+
+    --gap-xs: 0.625rem;
+    --gap-21xl: 1.75rem;
+    --gap-xl: 1rem;
+    --gap-5xl: 1.25rem;
+
+    --padding-5xl: 1.25rem;
+    --padding-61xl: 4.25rem;
+    --padding-13xl: 1.5rem;
+    --padding-41xl: 3.25rem;
+    --padding-xl: 1.125rem;
+    --padding-21xl: 2.25rem;
+
+    --skill-container-size: 6rem;
+    --skill-container-image-size: 3.5rem;
+    --social-container-size: 6rem;
+    --horzontal-margin: 5%;
+  }
+}
+
+/* Surface/Flip Devices (Up to 850px) */
+@media (max-width: 850px) {
+  :root {
+    --button-text-semibold-size: 1.125rem;
+    --heading-h3-semibold-size: 1.625rem;
+    --displaytext-extra-bold-size: 2.75rem;
+    --heading-h2-bold-size: 1.75rem;
+    --heading-h4-semibold-size: 1.375rem;
+
+    --gap-xs: 0.625rem;
+    --gap-21xl: 2rem;
+    --gap-xl: 1.125rem;
+    --gap-5xl: 1.375rem;
+
+    --padding-5xl: 1.5rem;
+    --padding-61xl: 4.5rem;
+    --padding-13xl: 1.75rem;
+    --padding-41xl: 3.5rem;
+    --padding-xl: 1.25rem;
+    --padding-21xl: 2.5rem;
+
+    --skill-container-size: 8rem;
+    --skill-container-image-size: 4.25rem;
+    --social-container-size: 8rem;
+  }
+}
+
+/* Desktop Devices (larger than 768px) */
+@media (min-width: 769px) {
+  :root {
+    --paragraph-p2-regular-size: 1rem;
+    --button-text-semibold-size: 1.25rem;
+    --heading-h3-semibold-size: 1.75rem;
+    --displaytext-extra-bold-size: 3rem;
+    --heading-h2-bold-size: 2rem;
+    --heading-h4-semibold-size: 1.5rem;
+
+    --gap-xs: 0.75rem;
+    --gap-21xl: 2.5rem;
+    --gap-xl: 1.25rem;
+    --gap-5xl: 1.5rem;
+
+    --padding-5xl: 1.5rem;
+    --padding-61xl: 5rem;
+    --padding-13xl: 2rem;
+    --padding-41xl: 3.75rem;
+    --padding-xl: 1.25rem;
+    --padding-21xl: 2.5rem;
+
+    --skill-container-size: 9rem;
+    --skill-container-image-size: 4.5rem;
+    --social-container-size: 9rem;
+  }
+}
+
+/* Large Screens/Web (min-width: 1200px) */
+@media (min-width: 1200px) {
+  :root {
+    --paragraph-p2-regular-size: 1rem;
+    --button-text-semibold-size: 1.25rem;
+    --heading-h3-semibold-size: 1.75rem;
+    --displaytext-extra-bold-size: 3.25rem;
+    --heading-h2-bold-size: 2.25rem;
+    --heading-h4-semibold-size: 1.625rem;
+
+    --gap-xs: 0.75rem;
+    --gap-21xl: 3rem;
+    --gap-xl: 1.375rem;
+    --gap-5xl: 1.75rem;
+
+    --padding-5xl: 1.75rem;
+    --padding-61xl: 5.5rem;
+    --padding-13xl: 2.25rem;
+    --padding-41xl: 4rem;
+    --padding-xl: 1.375rem;
+    --padding-21xl: 2.75rem;
+
+    --skill-container-size: 9.5rem;
+    --skill-container-image-size: 5rem;
+    --social-container-size: 9.5rem;
+    --horzontal-margin: 10%;
+  }
+}
+
+@media (min-width: 1900px) {
+  :root {
+    /* Font sizes */
+    --paragraph-p2-regular-size: 1.1rem;
+    --button-text-semibold-size: 1.5rem;
+    --heading-h3-semibold-size: 2rem;
+    --displaytext-extra-bold-size: 3.5rem;
+    --heading-h2-bold-size: 2.5rem;
+    --heading-h4-semibold-size: 1.75rem;
+
+    /* Gaps */
+    --gap-xs: 0.85rem;
+    --gap-21xl: 3.5rem;
+    --gap-xl: 1.5rem;
+    --gap-5xl: 2rem;
+
+    /* Paddings */
+    --padding-5xl: 2rem;
+    --padding-61xl: 6rem;
+    --padding-13xl: 2.5rem;
+    --padding-41xl: 4.5rem;
+    --padding-xl: 1.5rem;
+    --padding-21xl: 3rem;
+
+    /* Container Sizes */
+    --skill-container-size: 10.5rem;
+    --skill-container-image-size: 5.5rem;
+    --social-container-size: 10.5rem;
+
+    /* Horizontal margin adjusted to percentage */
+    --horzontal-margin: 15%;
+  }
+}

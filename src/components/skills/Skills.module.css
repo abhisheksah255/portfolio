@@ -1,0 +1,227 @@
+/* Container for My Skills */
+.mySkillsContainer {
+    flex-grow: 1;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.headingTextColor{
+    color: var(--primary-white);
+}
+
+/* Grid container for Skill cards */
+.cardGridContainer {
+    width: 100%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    place-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Responsive grid */
+    column-gap: 3rem; /* Horizontal spacing */
+    row-gap: 1.5rem; /* Vertical spacing */
+    animation: fadeIn 0.6s ease forwards;
+}
+
+
+/* Styling for the card container */
+.skillCardContainer {
+    display: flex;
+    border: 2px solid var(--primary-black);
+    border-radius: 6px;
+    width: 100%; /* Make it flexible */
+    max-width: 200px; /* Max width of each card */
+    /*max-height: 100px;*/
+    flex-direction: column;
+    min-height: 150px;
+    max-height: 100px;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+    padding: 0.5rem; /* Add padding for content spacing */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-sizing: border-box; /* Ensures padding does not overflow */
+}
+
+/* Skill name style */
+.skillName {
+    color: var(--primary-black);
+    font-size: 16px;
+    font-weight: 600;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+/* Image inside the skill card */
+.skillCardImage {
+    width: 60%; /* Adjust size to make it responsive */
+    height: auto;
+}
+
+/* Hover effects */
+.skillCardContainer:hover .skillName {
+    color: var(--primary-white);
+}
+
+.skillCardContainer:hover .skillCardImage {
+    filter: grayscale(0%) invert(1) sepia(1) saturate(7) hue-rotate(180deg); /* Change the color */
+}
+
+.skillCardContainer:hover {
+    border: 2px solid var(--primary-black);
+    background: var(--primary-black);
+}
+
+/* RESPONSIVENESS */
+
+/* Mobile - Small Devices (up to 480px) */
+@media (max-width: 480px) {
+    .cardGridContainer {
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); /* 1 column or 2 columns on very small screens */
+        column-gap: 1.5rem; /* Reduce horizontal spacing */
+        row-gap: 1.5rem; /* Reduce vertical spacing */
+    }
+
+    .skillCardContainer {
+        width: 100%; /* Full width on mobile */
+        max-width: none; /* Remove max width for small screens */
+        padding: 1rem; /* Reduced padding for small screens */
+    }
+
+    .skillCardImage {
+        width: 50%; /* Reduce the icon size */
+    }
+
+    .skillName {
+        font-size: 14px; /* Adjust font size for mobile */
+    }
+}
+
+/* Tablet Devices (up to 768px) */
+@media (max-width: 768px) {
+
+    .cardGridContainer {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* 2 or 3 columns for tablet */
+        column-gap: 2rem; /* Adjust horizontal spacing */
+        row-gap: 2rem; /* Adjust vertical spacing */
+    }
+
+    .skillCardContainer {
+        width: 100%; /* Full width on tablet */
+        max-width: 220px; /* Adjust max width */
+        padding: 1.25rem; /* Adjust padding for tablet */
+    }
+
+    .skillCardImage {
+        width: 60%; /* Keep the icon size proportional */
+    }
+
+    .skillName {
+        font-size: 15px; /* Adjust font size for tablet */
+    }
+}
+
+/* Desktop - Larger devices (min-width: 769px) */
+@media (min-width: 769px) {
+
+    .cardGridContainer {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Multiple columns for larger screens */
+        column-gap: 3rem; /* Horizontal spacing */
+        row-gap: 2.5rem; /* Vertical spacing */
+    }
+
+    .skillCardContainer {
+        width: 100%; /* Full width on desktop */
+        max-width: 250px; /* Max width for skill cards */
+        padding: 1.5rem; /* Adjust padding for desktop */
+    }
+
+    .skillCardImage {
+        width: 70%; /* Make the icon slightly larger */
+    }
+
+    .skillName {
+        font-size: 16px; /* Adjust font size for desktop */
+    }
+}
+
+
+/* RESPONSIVENESS */
+
+/* Mobile - Small Devices (up to 480px) */
+@media (max-width: 480px) {
+
+    .cardGridContainer {
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); /* 1 column or 2 columns on very small screens */
+        column-gap: 1.5rem; /* Reduce horizontal spacing */
+        row-gap: 1.5rem; /* Reduce vertical spacing */
+    }
+
+    .skillCardContainer {
+        width: 100%; /* Full width on mobile */
+        max-width: none; /* Remove max width for small screens */
+        padding: 1rem; /* Reduced padding for small screens */
+    }
+
+    .skillCardImage {
+        width: 50%; /* Reduce the icon size */
+    }
+
+    .skillName {
+        font-size: 14px; /* Adjust font size for mobile */
+    }
+}
+
+/* Tablet Devices (up to 768px) */
+@media (max-width: 768px) {
+
+    .cardGridContainer {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 2 or 3 columns for tablet */
+        column-gap: 2rem; /* Adjust horizontal spacing */
+        row-gap: 1rem; /* Adjust vertical spacing */
+    }
+
+    .skillCardContainer {
+        width: 100%; /* Full width on tablet */
+        max-width: 220px; /* Adjust max width */
+        padding: 1.25rem; /* Adjust padding for tablet */
+    }
+
+    .skillCardImage {
+        width: 60%; /* Keep the icon size proportional */
+    }
+
+    .skillName {
+        font-size: 15px; /* Adjust font size for tablet */
+    }
+}
+
+/* Desktop - Larger devices (min-width: 769px) */
+@media (min-width: 769px) {
+    .cardGridContainer {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Multiple columns for larger screens */
+        column-gap: 2.5rem; /* Horizontal spacing */
+        row-gap: 1rem; /* Vertical spacing */
+    }
+
+    .skillCardContainer {
+        width: 100%; /* Full width on desktop */
+        max-width: 250px; /* Max width for skill cards */
+        padding: 1.5rem; /* Adjust padding for desktop */
+    }
+
+    .skillCardImage {
+        width: 70%; /* Make the icon slightly larger */
+    }
+
+    .skillName {
+        font-size: 16px; /* Adjust font size for desktop */
+    }
+}

@@ -1,0 +1,74 @@
+/* Base styles for socialIconContainer */
+.socialIconContainer {
+    width: 3.625rem;
+    border-radius: var(--br-9xs);
+    border: 2px solid var(--primary-black);
+    box-sizing: border-box;
+    height: 3.625rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-base);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.socialIcon {
+    position: relative;
+    width: 2.25rem;
+    height: 2.25rem;
+    object-fit: cover;
+}
+
+.socialIconContainer:hover .socialIcon {
+    filter: grayscale(0%) invert(1) sepia(1) saturate(7) hue-rotate(180deg); /* Change the color */
+}
+
+.socialIconContainer:hover {
+    border-radius: var(--br-9xs);
+    border: 2px solid var(--primary-black);
+    background: var(--primary-black);
+}
+
+/* RESPONSIVENESS */
+
+/* Mobile - Small Devices (up to 480px) */
+@media (max-width: 480px) {
+    .socialIconContainer {
+        width: 3rem; /* Smaller size for mobile */
+        height: 3rem;
+        padding: var(--padding-5xl); /* Adjust padding */
+    }
+
+    .socialIcon {
+        width: 1.75rem; /* Smaller icon size */
+        height: 1.75rem;
+    }
+}
+
+/* Tablet Devices (up to 768px) */
+@media (max-width: 768px) {
+    .socialIconContainer {
+        width: 3.25rem; /* Slightly larger for tablet */
+        height: 3.25rem;
+    }
+
+    .socialIcon {
+        width: 2rem; /* Adjust icon size for tablets */
+        height: 2rem;
+    }
+}
+
+/* Desktop and larger screens (min-width: 769px) */
+@media (min-width: 769px) {
+    .socialIconContainer {
+        width: 3.625rem; /* Default size for desktop */
+        height: 3.625rem;
+    }
+
+    .socialIcon {
+        width: 2.25rem; /* Default icon size */
+        height: 2.25rem;
+    }
+}

@@ -1,0 +1,119 @@
+/* Main Header styles */
+.header {
+    /*width: 100%;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: space-between;*/
+    /*box-sizing: border-box;*/
+    font-size: var(--button-text-semibold-size);
+}
+
+/* Container for logo and taskbar (centered) */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    /*position: relative;*/
+}
+
+/* Logo Name - Keep it on the left side */
+.logoName {
+    font-weight: bold;
+    font-size: 1.5rem;
+    position: absolute; /* Position the logo on the left side */
+    left: 0;
+}
+
+/* Taskbar - Centered on larger screens */
+.taskbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; /* This will center the taskbar */
+    gap: 1.5rem;
+    flex-grow: 1; /* Allow the taskbar to take available space */
+}
+
+/* Resume Button Container - Positioned on the right */
+
+/* Hamburger Icon (shown only on small screens) */
+.hamburgerIcon {
+    display: none; /* Hidden by default */
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* Drawer - Initially hidden */
+.drawer {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed position to remain static */
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100%;
+    background-color: var(--primary-white);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    z-index: 100;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-end;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+    transform: translateY(-100%); /* Start off-screen */
+}
+
+/* Menu items in the drawer */
+.drawerMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* Close Button */
+.drawerCloseButton {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* Drawer open state */
+.drawerOpen {
+    display: flex;
+    transform: translateY(0); /* Slide the drawer in */
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    /* Hamburger Icon - Display on small screens only */
+    .hamburgerIcon {
+        display: block;
+    }
+
+    /* Hide navigation menu and resume button on small screens */
+    .taskbar {
+        display: none;
+    }
+
+    /* Drawer visible when hamburger icon clicked */
+    .drawerOpen {
+        display: flex; /* Show the drawer when it is open */
+    }
+}
+
+/* Tablet and above screens - Menu in row */
+@media (min-width: 768px) {
+    /* Make sure the taskbar (menu) and resume button are in a row */
+    .taskbar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-grow: 1;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+}

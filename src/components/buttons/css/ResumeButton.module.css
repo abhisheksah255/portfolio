@@ -1,0 +1,47 @@
+.button {
+    border-radius: 4px;
+    background-color: var(--primary-black);
+    height: 3.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1.25rem;
+    box-sizing: border-box;
+    gap: 0.5rem;
+    color: var(--primary-white);
+    cursor: pointer;
+}
+.resume {
+    position: relative;
+    letter-spacing: 0.02em;
+    line-height: 20px;
+    font-weight: 600;
+}
+.resume:active {
+    color: var(--primary-black);
+}
+
+.downloadIcon {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: inline-block; /* To ensure correct rendering */
+}
+
+/* Apply color change on active (for non-text elements like SVGs) */
+.downloadIcon:active {
+    fill: var(--primary-black); /* If it's an SVG icon */
+}
+
+
+.button:hover {
+    background-color: var(--primary-neutral);
+    touch-action: pinch-zoom;
+}
+.button:active {
+    background-color: var(--primary-white);
+    border: 2px solid var(--primary-black);
+}

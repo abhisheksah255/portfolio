@@ -1,0 +1,276 @@
+.contactContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    align-content: center;
+    height: auto;
+    gap: 10rem;
+    margin-top: 3rem;
+}
+
+/* ContactForm.module.css */
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    width: 100%;
+    align-content: start;
+    height: auto;
+    gap: 1rem;
+    flex-grow: 2;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.phoneInputGroup {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.countryCode {
+    width: auto;
+    margin-right: 8px;
+    border: 2px solid var(--primary-neutral);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: var(--primary-black);
+    font-size: var(--paragraph-p2-regular-size);
+    font-family: var(--font-family-sora), sans-serif;
+    height: auto;
+    padding: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px;
+    cursor: pointer;
+}
+
+.countryCode:focus {
+    outline: none;
+    border-color: var(--primary-black);
+}
+
+.countryCode:hover {
+    border-color: var(--primary-black);
+}
+
+.label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--primary-neutral);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: var(--primary-black);
+    font-size: var(--paragraph-p2-regular-size);
+    font-family: var(--font-family-sora), sans-serif;
+    flex: 1;
+}
+
+.textArea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 2px solid var(--primary-neutral);
+    box-sizing: border-box;
+    height: 120px;
+    flex: 1;
+    color: var(--primary-black);
+    font-size: var(--paragraph-p2-regular-size);
+    font-family: var(--font-family-sora), sans-serif;
+    resize: vertical;
+}
+
+.labelContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+}
+
+.labelContainer h2{
+    font-size: 3rem;
+    margin: 0;
+}
+
+.labelContainer h3{
+    margin: 0;
+    color: var(--primary-black);
+    text-decoration: none;
+}
+
+.buttonContainer{
+    border-radius: 4px;
+    background-color: var(--primary-black);
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    color: var(--primary-white);
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    line-height: 20px;
+    font-weight: 600;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.labelContainer small{
+    margin: 1rem 0;
+}
+
+.buttonAndSocialGroup{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .contactContainer {
+        gap: 4rem;
+    }
+
+    .labelContainer h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .contactContainer {
+        gap: 2.5rem;
+    }
+
+    .labelContainer h2 {
+        font-size: 2.2rem;
+    }
+
+    .labelContainer h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .contactContainer {
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 1.5rem;
+    }
+
+    .labelContainer h2 {
+        font-size: 2rem;
+    }
+
+    .labelContainer h3 {
+        font-size: 1.2rem;
+    }
+
+    .buttonContainer {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .labelContainer h2 {
+        font-size: 1.8rem;
+    }
+
+    .labelContainer h3 {
+        font-size: 1rem;
+    }
+
+    .input, .textArea {
+        font-size: 0.9rem;
+    }
+
+    .buttonAndSocialGroup{
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .labelContainer h2 {
+        font-size: 1.5rem;
+    }
+
+    .labelContainer h3 {
+        font-size: 0.9rem;
+    }
+
+    .input, .textArea {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    .buttonContainer {
+        padding: 8px 12px;
+    }
+
+    .buttonAndSocialGroup{
+        flex-direction: column;
+    }
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 3px dotted var(--primary-black);
+    border-style: solid solid dotted dotted;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: rotation 2s linear infinite;
+  }
+  .loader::after {
+    content: '';  
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    border: 3px dotted var(--primary-white);
+    border-style: solid solid dotted;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    animation: rotationBack 1s linear infinite;
+    transform-origin: center center;
+  }
+      
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } 
+  @keyframes rotationBack {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  } 
