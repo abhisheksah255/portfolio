@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [ githubaction ]
+  pull_request:
+    branches: [ githubaction ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, 20.x]
+
+    steps:
+    - uses: actions/checkout@v5
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v5
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Restore node_modules from cache
+      uses: actions/cache@v4
+      with:
+        path: |
+          node_modules
+          */*/node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run lint
+      run: npm run lint
+      
+    # Run unit tests
+    - name: Run unit tests
+      run: npm test -- --reporters=default --reporters=jest-junit
+
+    # Run e2e tests
+    - name: Run e2e tests
+      run: npm run e2e -- --reporter junit --reporter-options "mochaFile=e2e-results/results-[hash].xml,toConsole=true"
+
+
+    - name: Run CodeQL Analysis
+      uses: github/codeql-action/analyze@v3      
+
+    - name: Run the audit
+      run: npm run audit
+
+
+    - name: Run type check
+      run: npm run type-check      
+
+    - name: Run the tests and generate coverage report
+      run: npm test -- --coverage
+
+    # Upload test reports and coverage as artifact
+    - name: Upload test results & coverage
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-reports
+        path: |
+          coverage/
+          test-results/
+          junit.xml
+          e2e-results/
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v5
+
+    - name: Build
+      run: npm run build
+
+      
