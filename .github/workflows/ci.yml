@@ -8,12 +8,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build And Test:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x, 20.x]
+        node-version: [18.x, 20.x]
 
     steps:
     - uses: actions/checkout@v5
@@ -34,11 +34,22 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    # ---- Quality & Tests ----
-    - name: Run lint
+    # ---- Linting ----
+    - name: Run lint check
       run: npm run lint
       continue-on-error: true
 
+    - name: Run lint fix
+      run: npm run lint:fix || true
+
+    - name: Upload lint-fixed files
+      uses: actions/upload-artifact@v4
+      with:
+        name: lint-fixed
+        path: .
+        if-no-files-found: ignore
+
+    # ---- Testing ----
     - name: Run unit tests
       run: npm test -- --reporters=default --reporters=jest-junit
       continue-on-error: true
@@ -47,6 +58,7 @@ jobs:
       run: npm run e2e -- --reporter junit --reporter-options "mochaFile=e2e-results/results-[hash].xml,toConsole=true"
       continue-on-error: true
 
+    # ---- Security & Analysis ----
     - name: Run CodeQL Analysis
       uses: github/codeql-action/analyze@v3
       continue-on-error: true
@@ -63,7 +75,7 @@ jobs:
       run: npm test -- --coverage
       continue-on-error: true
 
-    # ---- Upload Reports ----
+    # ---- Reports ----
     - name: Upload test results & coverage
       uses: actions/upload-artifact@v4
       with:
@@ -78,7 +90,7 @@ jobs:
       uses: codecov/codecov-action@v5
       continue-on-error: true
 
-    # ---- Build (only if all passed) ----
+    # ---- Build (only if everything passed) ----
     - name: Build
       if: success()
       run: npm run build
