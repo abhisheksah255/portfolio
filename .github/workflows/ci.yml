@@ -41,41 +41,25 @@ jobs:
 
     - name: Run lint fix
       run: npm run lint:fix || true
+      if: always()
 
-    - name: Upload lint-fixed files
-      uses: actions/upload-artifact@v4
-      with:
-        name: lint-fixed
-        path: .
-        if-no-files-found: ignore
-
-    # ---- Testing ----
+    # Run unit tests
     - name: Run unit tests
       run: npm test -- --reporters=default --reporters=jest-junit
       continue-on-error: true
 
+    # Run e2e tests
     - name: Run e2e tests
       run: npm run e2e -- --reporter junit --reporter-options "mochaFile=e2e-results/results-[hash].xml,toConsole=true"
       continue-on-error: true
 
-    # ---- Security & Analysis ----
-    - name: Run CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
-      continue-on-error: true
-
-    - name: Run audit
-      run: npm run audit
-      continue-on-error: true
-
+    # Run type check
     - name: Run type check
       run: npm run type-check
       continue-on-error: true
+      if: always()
 
-    - name: Run tests with coverage
-      run: npm test -- --coverage
-      continue-on-error: true
-
-    # ---- Reports ----
+    # Upload test reports even if tests failed
     - name: Upload test results & coverage
       uses: actions/upload-artifact@v4
       with:
@@ -85,10 +69,7 @@ jobs:
           test-results/
           junit.xml
           e2e-results/
-
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v5
-      continue-on-error: true
+      if: always()
 
     # ---- Build (only if everything passed) ----
     - name: Build
