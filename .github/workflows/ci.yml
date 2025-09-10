@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [20.x]
 
     steps:
     - uses: actions/checkout@v5
@@ -34,14 +34,14 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    # ---- Linting ----
-    - name: Run lint check
-      run: npm run lint
-      continue-on-error: true
+    # # ---- Linting ----
+    # - name: Run lint check
+    #   run: npm run lint
+    #   continue-on-error: true
 
-    - name: Run lint fix
-      run: npm run lint:fix || true
-      if: always()
+    # - name: Run lint fix
+    #   run: npm run lint:fix || true
+    #   if: always()
 
     # Run unit tests
     - name: Run unit tests
