@@ -46,18 +46,18 @@ jobs:
     # Run unit tests
     - name: Run unit tests
       run: npm test -- --reporters=default --reporters=jest-junit
-      continue-on-error: true
+      # continue-on-error: true
 
     # Run e2e tests
     - name: Run e2e tests
       run: npm run e2e -- --reporter junit --reporter-options "mochaFile=e2e-results/results-[hash].xml,toConsole=true"
-      continue-on-error: true
+      # continue-on-error: true
 
     # Run type check
     - name: Run type check
       run: npm run type-check
-      continue-on-error: true
-      if: always()
+      # continue-on-error: true
+      # if: always()
 
     # Upload test reports even if tests failed
     - name: Upload test results & coverage
@@ -69,7 +69,7 @@ jobs:
           test-results/
           junit.xml
           e2e-results/
-      if: always()
+      # if: always()
 
     # ---- Build (only if everything passed) ----
     - name: Build
