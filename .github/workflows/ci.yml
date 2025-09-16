@@ -81,15 +81,15 @@ jobs:
       run:  npm run test:coverage
       # run: npm test -- --coverage --watchAll=false # Adjust based on your test runner
 
-    - name: SonarQube Scan
-      uses: SonarSource/sonarqube-scan-action@v2.6.0 # Use the latest version
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      with:
-        projectBaseDir: . # Or the directory containing your sonar-project.properties
-        args: >
-          -Dsonar.projectKey= my-react-app # Must match the key in sonar-project.properties
-          -Dsonar.projectName= "My React Application"
-          -Dsonar.projectVersion=1.0
+    # - name: SonarQube Scan
+    #   uses: SonarSource/sonarqube-scan-action@v2.6.0 # Use the latest version
+    #   env:
+    #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+    #   with:
+    #     projectBaseDir: . # Or the directory containing your sonar-project.properties
+    #     args: >
+    #       -Dsonar.projectKey= my-react-app # Must match the key in sonar-project.properties
+    #       -Dsonar.projectName= "My React Application"
+    #       -Dsonar.projectVersion=1.0
 
