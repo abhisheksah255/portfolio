@@ -73,5 +73,5 @@ jobs:
 
     # ---- Build (only if everything passed) ----
     - name: Build
-      if: success()
+      # if: success()
       run: npm run build
