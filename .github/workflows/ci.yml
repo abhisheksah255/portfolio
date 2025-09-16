@@ -12,73 +12,177 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         node-version: [20.x]
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v5
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v5
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'               # built-in caching
 
-    - name: Restore node_modules from cache
-      uses: actions/cache@v4
-      with:
-        path: |
-          node_modules
-          */*/node_modules
-        key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      # If you prefer manual cache, keep your actions/cache step instead of the built-in one above.
+      # - name: Restore node_modules from cache
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: |
+      #       node_modules
+      #       */*/node_modules
+      #     key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm ci
+        if: ${{ always() }}
+
+      # ---- Security: secrets scan (optional to block) ----
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITLEAKS_API_TOKEN || github.token }}
+        continue-on-error: true        # run and report, but don't block the rest
+        if: ${{ always() }}
+
+      # ---- Linting ----
+      - name: Run lint check
+        run: npm run lint
+        continue-on-error: true        # lint shouldn't block subsequent steps
+        if: ${{ always() }}
+
+      - name: Run lint fix
+        run: npm run lint:fix || true
+        if: ${{ always() }}
+
+      # ---- Unit tests (critical) ----
+      - name: Run tests (JUnit)
+        run: npm run test:ci
+        # no continue-on-error -> if this fails, job will be failed,
+        # BUT steps with if: always() will still run.
+
+      - name: "Upload JUnit report"
+        uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: junit-report
+          path: reports/junit/junit.xml
+          if-no-files-found: ignore
+
+      # Upload test results even if tests failed
+      - name: "Upload test results & coverage"
+        uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: test-reports
+          path: |
+            coverage/
+            test-results/
+            junit.xml
+          if-no-files-found: ignore
+
+      # ---- Build (we still want it to run even if tests failed) ----
+      - name: Build
+        run: npm run build
+        if: ${{ always() }}
+
+      # Optional: run coverage again or generate report files post-build
+      - name: Run tests and generate coverage (optional)
+        run: npm run test:coverage || true
+        if: ${{ always() }}
+
+      # Optional: final step to summarize failures in logs
+      - name: Summarize job result
+        if: ${{ always() }}
+        run: |
+          echo "Overall job conclusion: ${{ job.status }}"
+          # job.status will be 'failure' if any non-continue-on-error step failed
+
+
+# name: CI
+
+# on:
+#   push:
+#     branches: [ githubaction ]
+#   pull_request:
+#     branches: [ githubaction ]
+#   workflow_dispatch:
+
+# jobs:
+#   Build_And_Test:
+#     runs-on: ubuntu-latest
+
+#     strategy:
+#       matrix:
+#         node-version: [20.x]
+
+#     steps:
+#     - name: Checkout Code
+#       uses: actions/checkout@v5
+
+#     - name: Use Node.js ${{ matrix.node-version }}
+#       uses: actions/setup-node@v5
+#       with:
+#         node-version: ${{ matrix.node-version }}
+
+#     - name: Restore node_modules from cache
+#       uses: actions/cache@v4
+#       with:
+#         path: |
+#           node_modules
+#           */*/node_modules
+#         key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+
+#     - name: Install dependencies
+#       run: npm install
       
-# gitleaks check from code have secrets 
-    - name: Run Gitleaks
-      uses: gitleaks/gitleaks-action@v2
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITLEAKS_API_TOKEN }}
-    # ---- Linting ----
-    - name: Run lint check
-      run: npm run lint
-      continue-on-error: true
+# # gitleaks check from code have secrets 
+#     - name: Run Gitleaks
+#       uses: gitleaks/gitleaks-action@v2
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITLEAKS_API_TOKEN }}
+#     # ---- Linting ----
+#     - name: Run lint check
+#       run: npm run lint
+#       continue-on-error: true
 
-    - name: Run lint fix
-      run: npm run lint:fix || true
-      if: always()
+#     - name: Run lint fix
+#       run: npm run lint:fix || true
+#       if: always()
 
-    - name: Run tests (JUnit)
-      run: npm run test:ci
+#     - name: Run tests (JUnit)
+#       run: npm run test:ci
 
-    - name: Upload JUnit report
-      uses: actions/upload-artifact@v4
-      with:
-        name: junit-report
-        path: reports/junit/junit.xml
-        if-no-files-found: warn
-
-
-    # Upload test reports even if tests failed
-    - name: Upload test results & coverage
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-reports
-        path: |
-          coverage/
-          test-results/
-          junit.xml
-      # if: always()
-
-    # ---- Build (only if everything passed) ----
-    - name: Build
-      # if: success()
-      run: npm run build
+#     - name: Upload JUnit report
+#       uses: actions/upload-artifact@v4
+#       with:
+#         name: junit-report
+#         path: reports/junit/junit.xml
+#         if-no-files-found: warn
 
 
-    - name: Run tests and generate coverage (optional)
-      run:  npm run test:coverage
+#     # Upload test reports even if tests failed
+#     - name: Upload test results & coverage
+#       uses: actions/upload-artifact@v4
+#       with:
+#         name: test-reports
+#         path: |
+#           coverage/
+#           test-results/
+#           junit.xml
+#       # if: always()
+
+#     # ---- Build (only if everything passed) ----
+#     - name: Build
+#       # if: success()
+#       run: npm run build
+
+
+#     - name: Run tests and generate coverage (optional)
+#       run:  npm run test:coverage
+
       # run: npm test -- --coverage --watchAll=false # Adjust based on your test runner
 
     # - name: SonarQube Scan
