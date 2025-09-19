@@ -1,4 +1,5 @@
 import mainLogo from "../../assets/app_logo.svg";
+import PropTypes from "prop-types";
 import styles from "./css/Logo.module.css";
 import React from 'react';
 
@@ -18,4 +19,10 @@ export const LogoAndName = ({ onPress, children, logo }) => {
             <b className={styles.personal}>{children}</b>
         </div>
     );
+};
+
+LogoAndName.propTypes = {
+  onPress: PropTypes.func,
+  children: PropTypes.node,
+  logo: PropTypes.string
 };

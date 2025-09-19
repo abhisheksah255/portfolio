@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import style from "./Projects.module.css";
 import {InnerLayout} from "../layout/InnerLayout.js";
 import {HeadlineText} from "../text/Headline";
@@ -28,6 +29,10 @@ export const Projects = ({projects = []}) => {
     );
 }
 
+    Projects.propTypes = {
+      projects: PropTypes.array
+    };
+
 
 export const LeftProjects = ({project}) =>{
     const {id, name, description, image, url, githubUrl} = project;
@@ -39,6 +44,10 @@ export const LeftProjects = ({project}) =>{
     );
 }
 
+    LeftProjects.propTypes = {
+        project: PropTypes.object.isRequired
+    };
+
 export const RightProjects = ({project}) =>{
     const {id, name, description, image, url, githubUrl} = project;
     return (
@@ -48,6 +57,10 @@ export const RightProjects = ({project}) =>{
         </div>
     );
 }
+
+    RightProjects.propTypes = {
+        project: PropTypes.object.isRequired
+    };
 
 export const ProjectDetails = ({id, name, description, url, githubUrl}) =>{
     return (
@@ -71,3 +84,11 @@ export const ProjectDetails = ({id, name, description, url, githubUrl}) =>{
         </div>
     )
 }
+
+    ProjectDetails.propTypes = {
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      url: PropTypes.string,
+      githubUrl: PropTypes.string
+    };

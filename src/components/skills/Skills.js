@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import styles from './Skills.module.css';
 import {HeadlineText} from "../text/Headline";
 import {InnerLayout} from "../layout/InnerLayout";
@@ -19,6 +20,11 @@ export const Skills = ({sectionId = "skills", skills = []}) => {
     );
 };
 
+Skills.propTypes = {
+  sectionId: PropTypes.string,
+  skills: PropTypes.array
+};
+
 
 export const SkillCard = ({ title,image }) => {
     return (
@@ -27,6 +33,11 @@ export const SkillCard = ({ title,image }) => {
             <div className={styles.skillName}>{title}</div>
         </div>
     );
+};
+
+SkillCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  image: PropTypes.string
 };
 
 export const Grid = ({skills = [] }) => {
@@ -42,4 +53,8 @@ export const Grid = ({skills = [] }) => {
             ))}
         </div>
     );
+};
+
+Grid.propTypes = {
+  skills: PropTypes.array
 };

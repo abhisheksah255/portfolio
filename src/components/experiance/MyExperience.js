@@ -1,3 +1,4 @@
+
 import style from "./Experience.module.css";
 import {HeadlineText} from "../text/Headline";
 import React from "react";
@@ -89,3 +90,7 @@ export const Experience =({ experience }) => {
         </div>
     );
 }
+
+    Experience.propTypes = {
+        experience: require('prop-types').object.isRequired
+    };

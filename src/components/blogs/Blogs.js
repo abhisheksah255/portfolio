@@ -1,4 +1,5 @@
 import {React} from "react";
+import PropTypes from "prop-types";
 import { InnerLayout } from "../layout/InnerLayout.js";
 import style from "./Blogs.module.css";
 import {HeadlineText} from "../text/Headline";
@@ -31,6 +32,10 @@ export const Blogs = ({ blogUrls = [] }) => {
         </InnerLayout>
     );
 };
+
+    Blogs.propTypes = {
+      blogUrls: PropTypes.array
+    };
 
 
 const getPreview = async (url) => {
@@ -82,3 +87,7 @@ export const BlogCard = ({ url }) => {
         </div>
     );
 };
+
+    BlogCard.propTypes = {
+      url: PropTypes.string.isRequired
+    };

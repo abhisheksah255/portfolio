@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import style from "./ParentLayout.module.css"
 
 export const InnerLayout = ({ children, backgroundColor, contentColor}) => {
@@ -10,3 +11,9 @@ export const InnerLayout = ({ children, backgroundColor, contentColor}) => {
         </div>
     );
 }
+
+InnerLayout.propTypes = {
+  children: PropTypes.node,
+  backgroundColor: PropTypes.string,
+  contentColor: PropTypes.string
+};

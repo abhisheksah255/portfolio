@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styles from "./Contact.module.css";
 import { InnerLayout } from "../layout/InnerLayout.js";
 import SocialIconContainer from "../header/SocialIconContainer";
@@ -12,6 +13,10 @@ export const Contact = ({ socialLinks = [] }) => {
             </div>
         </InnerLayout>
     );
+};
+
+Contact.propTypes = {
+  socialLinks: PropTypes.array
 };
 
 export const ContactForm = ({ socialLinks = [] }) => {
@@ -38,6 +43,10 @@ export const ContactForm = ({ socialLinks = [] }) => {
         // Validate input fields but do NOT prevent submission
         const validationErrors = validateForm(formData);
         setErrors(validationErrors); // Show validation errors
+
+ContactForm.propTypes = {
+  socialLinks: PropTypes.array
+};
 
         // Reset validation errors after 2 seconds
         setTimeout(() => {

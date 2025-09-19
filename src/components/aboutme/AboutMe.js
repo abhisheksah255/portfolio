@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import style from "./AboutMe.module.css";
 import { useMediaQuery } from "react-responsive";
 import {HeadlineText} from "../text/Headline";
@@ -20,6 +21,10 @@ const AboutMe = ({ paragraphs }) => {
 
 export default AboutMe;
 
+AboutMe.propTypes = {
+  paragraphs: PropTypes.arrayOf(PropTypes.string).isRequired
+};
+
 
 export const AboutMeContainer = ({ paragraphs }) => {
     const isSmall = useMediaQuery({ maxWidth: 768 });
@@ -40,3 +45,7 @@ export const AboutMeContainer = ({ paragraphs }) => {
         </div>
     );
 }
+
+AboutMeContainer.propTypes = {
+  paragraphs: PropTypes.arrayOf(PropTypes.string).isRequired
+};

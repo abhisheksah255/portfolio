@@ -1,5 +1,6 @@
 import styles from "./Headline.module.css";
 import React from "react";
+import PropTypes from "prop-types";
 
 export const HeadlineText = ({ firstText, secondText, color = "var(--primary-black)" }) => {
     return (
@@ -8,3 +9,9 @@ export const HeadlineText = ({ firstText, secondText, color = "var(--primary-bla
         </div>
     );
 };
+
+    HeadlineText.propTypes = {
+        firstText: PropTypes.string.isRequired,
+        secondText: PropTypes.string.isRequired,
+        color: PropTypes.string
+    };
