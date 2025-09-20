@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import SocialIcon from "../socialicon/SocialIcon";
 import styles from "./css/SocialIconContainer.module.css";
 
@@ -20,5 +22,15 @@ const SocialIconContainer =({socialLinks = []})=>{
         </div>
     )
 }
+    SocialIconContainer.propTypes = {
+        socialLinks: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+                name: PropTypes.string.isRequired,
+                icon: PropTypes.node.isRequired,
+                url: PropTypes.string.isRequired,
+            })
+        ),
+    };
 
 export default SocialIconContainer;

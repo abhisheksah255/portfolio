@@ -91,6 +91,8 @@ export const Experience =({ experience }) => {
     );
 }
 
-    Experience.propTypes = {
-        experience: require('prop-types').object.isRequired
-    };
+import PropTypes from 'prop-types';
+
+Experience.propTypes = {
+    experience: PropTypes.object.isRequired
+};

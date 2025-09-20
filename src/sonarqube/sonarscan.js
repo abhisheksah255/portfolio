@@ -1,4 +1,5 @@
-const scanner = require('sonarqube-scanner').default;
+import scannerModule from 'sonarqube-scanner';
+const scanner = scannerModule.default || scannerModule;
 
 scanner(
     {
@@ -17,7 +18,7 @@ scanner(
         if (error) {
             console.error(error);
         }
-        process.exit();
+        globalThis.process.exit();
     },
 )
 

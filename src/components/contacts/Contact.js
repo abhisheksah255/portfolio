@@ -280,7 +280,7 @@ const LoadingSpinner = () => <span className={styles.loader}></span>;
 function ContactLabelText() {
     return (
         <div className={styles.labelContainer}>
-            <h2>Let's talk for Something special</h2>
+            <h2>Let&apos;s talk for Something special</h2>
             <small>
                 I seek to push the limits of creativity to create high-engaging, user-friendly, and
                 memorable interactive experiences.

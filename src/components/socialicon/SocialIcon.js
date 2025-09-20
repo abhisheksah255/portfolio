@@ -1,5 +1,5 @@
 import styles from "./SocialIcon.module.css";
-
+import PropTypes from 'prop-types';
 import React from 'react';
 
 /**
@@ -15,5 +15,11 @@ const SocialIcon = ({ name, onClick, children }) => {
         </div>
     );
 }
+
+    SocialIcon.propTypes = {
+        name: PropTypes.string.isRequired,
+        onClick: PropTypes.func,
+        children: PropTypes.node.isRequired,
+    };
 
 export default SocialIcon;

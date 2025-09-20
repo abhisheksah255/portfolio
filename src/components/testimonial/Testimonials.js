@@ -68,8 +68,7 @@ function Responsive() {
 
 
 
-function Card(props){
-        // const { index } = props;
+function Card(){
         return (
             <div className={styles.cardContainer}>
                 <div className={styles.profileImageWrapper}>
