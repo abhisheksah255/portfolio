@@ -100,6 +100,14 @@ jobs:
           echo "Overall job conclusion: ${{ job.status }}"
           # job.status will be 'failure' if any non-continue-on-error step failed
 
+
+      - name: Install SonarQube scanner
+        uses: nosinovacao/sonarscanner-action@v1
+        with:
+          version: '6.1.0.4477' # Specify the version if needed
+          javaDistribution: 'temurin' # Specify the Java distribution
+          javaVersion: '21' 
+
 # Shallow clones should be disabled for a better relevancy of analysis
       - name: SonarQube Configuration
         uses: SonarSource/sonarqube-scan-action@v5
