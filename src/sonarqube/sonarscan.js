@@ -3,8 +3,8 @@ const scanner = scannerModule.default || scannerModule;
 
 scanner(
     {
-        serverUrl: 'http://localhost:9000',
-        token: "sqp_c8c45be1417f241c1214efb53f3a1d432229aa51",
+        // serverUrl: 'http://localhost:9000',
+        // token: "sqp_c8c45be1417f241c1214efb53f3a1d432229aa51",
         options: {
             'sonar.projectName': 'sonarqube-react-project',
             'sonar.projectDescription': 'Here I can add a description of my project',
