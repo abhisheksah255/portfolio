@@ -47,6 +47,13 @@ jobs:
         continue-on-error: true        # run and report, but don't block the rest
         if: ${{ always() }}
 
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin' # Or 'adopt', 'zulu', etc.
+          java-version: '17'
+
       # ---- Linting ----
       - name: Run lint check
         run: npm run lint
@@ -100,17 +107,11 @@ jobs:
           echo "Overall job conclusion: ${{ job.status }}"
           # job.status will be 'failure' if any non-continue-on-error step failed
 
-
-      - name: Install SonarQube scanner
-        uses: nosinovacao/sonarscanner-action@v1
-        with:
-          version: '6.1.0.4477' # Specify the version if needed
-          javaDistribution: 'temurin' # Specify the Java distribution
-          javaVersion: '21' 
+          
 
 # Shallow clones should be disabled for a better relevancy of analysis
       - name: SonarQube Configuration
-        uses: SonarSource/sonarqube-scan-action@v5
+        uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
