@@ -109,6 +109,11 @@ jobs:
 
           
 
+      - name: Test SonarQube connectivity
+        run: curl -v $SONAR_HOST_URL/api/system/status
+        env:
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
 # Shallow clones should be disabled for a better relevancy of analysis
       - name: SonarQube Configuration
         uses: sonarsource/sonarqube-scan-action@master
